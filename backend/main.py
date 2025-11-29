@@ -25,6 +25,10 @@ app = FastAPI()
 db=SessionLocal()
 
 
+use_counter = 0
+MAX_USES = 5
+
+
 origins = [
     "http://localhost:3000",  
     "http://127.0.0.1:3000"   
@@ -99,7 +103,7 @@ async def login(user: UserLogin):
             return { 'access_token':token, 'token_type': "bearer", "user_id": db_user.id }
         else:
             return  {'message':'Password incorrect !!'}
-    return {'message':'Not Found You !!'}
+    return {'message':'Username ou Password incorrect !!'}
 
 # Prediction -------------------------------------------------------------------- :
 @app.post('/Prediction/{mode_type}')
@@ -119,7 +123,7 @@ async def predict_text(mode_type:str, text: PredictionIn, MyToken: HTTPBasicCred
         db.add(db_pred)
         db.commit()
         db.refresh(db_pred)
-        return  {'message':'Prediction Added Successfully'}
+        return pred
     else:
         return {"message":"Pleas chose mode"}
 
@@ -151,6 +155,29 @@ async def get_user_predictions(
     return user_predictions
 
 
+@app.post("/Prediction/{mode_type}")
+async def predict_text(mode_type: str, text: PredictionIn):
+    
+    global use_counter
+
+    if use_counter >= MAX_USES:
+        raise HTTPException(status_code=429, detail="Limit reached. You can only use this endpoint 5 times.")
+    
+    use_counter += 1
+
+    text_p = text.user_text
+
+    if mode_type == "FnEn":
+        pred = Fr_to_En(text_p)
+    elif mode_type == "EnFn":
+        pred = En_to_Fr(text_p)
+    else:
+        raise HTTPException(status_code=400, detail="Invalid mode")
+
+    return {
+        "prediction": pred,
+        "remaining_uses": MAX_USES - use_counter
+    }
 
 
 
