@@ -1,10 +1,6 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import { ArrowRightLeft, Sparkles, Clock, ArrowRight, Loader2, LogOut, Languages,AudioLines   } from 'lucide-react';
-import Logo from '@/component/logo';
-import { WavyBackground } from '@/components/ui/wavy-background';
-import { AuroraBackground } from '@/components/ui/aurora-background';
-import { BackgroundBeamsWithCollision } from '@/components/ui/background-beams-with-collision';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
@@ -220,7 +216,7 @@ export default function App() {
                         {/* Language Header */}
                         <div className="flex justify-between items-center mb-4 px-4">
                             <span className="text-sm font-semibold text-slate-500 uppercase tracking-wider">Source</span>
-                            <span className="text-sm font-semibold text-slate-500 uppercase tracking-wider">Target</span>
+                            <span className="text-sm font-semibold text-slate-500 uppercase tracking-wider">Cible</span>
                         </div>
 
                         <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-100 flex flex-col md:flex-row relative">
@@ -247,7 +243,7 @@ export default function App() {
                                             onClick={() => setSourceText('')}
                                             className="text-xs text-slate-400 hover:text-slate-600"
                                         >
-                                            Clear
+                                            Claire
                                         </button>
                                     )}
                                 </div>
@@ -303,7 +299,7 @@ export default function App() {
                                 disabled={!sourceText.trim() || isLoading}
                                 className="group relative inline-flex items-center justify-center px-8 py-3 text-lg font-medium text-white transition-all duration-200 bg-indigo-600 rounded-full hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-indigo-500/30"
                             >
-                                <span className="mr-2">Translate</span>
+                                <span className="mr-2">Traduire</span>
                                 {isLoading ? (
                                     <Loader2 className="w-5 h-5 animate-spin" />
                                 ) : (
@@ -325,7 +321,7 @@ export default function App() {
                         <div className="w-full max-w-5xl animate-in fade-in slide-in-from-bottom-4 duration-500 relative inset-0 z-1">
                             <div className="flex items-center gap-2 mb-4">
                                 <Clock className="w-5 h-5 text-slate-400" />
-                                <h2 className="text-lg font-bold text-slate-700 text-[#432dd7]">Recent History</h2>
+                                <h2 className="text-lg font-bold text-slate-700 text-[#432dd7]">Histoire récente</h2>
                             </div>
 
                             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -336,7 +332,7 @@ export default function App() {
                                     >
                                         <div className="flex flex-col h-full justify-between gap-3">
                                             <div>
-                                                <div className="text-sm text-slate-500 mb-1 font-medium">Original</div>
+                                                <div className="text-sm text-slate-500 mb-1 font-medium">Originale</div>
                                                 <p className="text-slate-800 line-clamp-2">{item.user_text}</p>
                                             </div>
 
@@ -345,7 +341,7 @@ export default function App() {
                                             </div>
 
                                             <div>
-                                                <div className="text-sm text-indigo-500 mb-1 font-medium">Result</div>
+                                                <div className="text-sm text-indigo-500 mb-1 font-medium">Résultat</div>
                                                 <p className="text-indigo-900 line-clamp-2">{item.result}</p>
                                             </div>
                                         </div>
