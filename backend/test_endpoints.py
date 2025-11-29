@@ -16,7 +16,7 @@ def test_login():
     assert response.json() == {'message':'Username ou Password incorrect !!'}
 
 
-def test_prediction_no_token():
+def test_prediction():
     response = client.post("/Prediction/FnEn", json={"user_text": "Bonjour"})
 
     assert response.status_code == 403

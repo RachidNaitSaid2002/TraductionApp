@@ -114,12 +114,12 @@ export default function App() {
         loadHistory();
     }, []);
 
-    const getLangName = (code: LangCode) => {
+    const getLangName = (code) => {
         const names = { en: "English", fr: "French" };
         return names[code];
     };
 
-    const speektext = (text: string, lang:string) => {
+    const speektext = (text, lang) => {
         const uterance = new SpeechSynthesisUtterance(text)
         uterance.lang = lang
         uterance.rate = 0.9

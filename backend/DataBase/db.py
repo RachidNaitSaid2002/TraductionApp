@@ -4,8 +4,8 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
-
-DataBase_URL = f"postgresql+psycopg2://{os.getenv('user')}:{os.getenv('password')}@{os.getenv('host')}:{os.getenv('port')}/{os.getenv('database')}"
+DataBase_URL = f"postgresql://neondb_owner:npg_GXY0dSbV9UzN@ep-damp-hall-ahmnl1au-pooler.c-3.us-east-1.aws.neon.tech/translate_app?sslmode=require&channel_binding=require"
+# DataBase_URL = f"postgresql+psycopg2://{os.getenv('user')}:{os.getenv('password')}@{os.getenv('host')}:{os.getenv('port')}/{os.getenv('database')}"
 print('--------------------------------------------------------', DataBase_URL)
 
 engine = create_engine(DataBase_URL, echo=True)

@@ -1,2 +1,4 @@
 venvT
 .env
+.vercel
+.env*.local

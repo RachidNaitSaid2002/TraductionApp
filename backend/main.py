@@ -31,7 +31,8 @@ MAX_USES = 5
 
 origins = [
     "http://localhost:3000",  
-    "http://127.0.0.1:3000"   
+    "http://127.0.0.1:3000",
+    "https://y-pevqzf986-rachidnaitsaid10-4979s-projects.vercel.app"   
 ]
 
 app.add_middleware(
@@ -153,32 +154,4 @@ async def get_user_predictions(
         return {"message": "No predictions found for this user."}
 
     return user_predictions
-
-
-@app.post("/Prediction/{mode_type}")
-async def predict_text(mode_type: str, text: PredictionIn):
-    
-    global use_counter
-
-    if use_counter >= MAX_USES:
-        raise HTTPException(status_code=429, detail="Limit reached. You can only use this endpoint 5 times.")
-    
-    use_counter += 1
-
-    text_p = text.user_text
-
-    if mode_type == "FnEn":
-        pred = Fr_to_En(text_p)
-    elif mode_type == "EnFn":
-        pred = En_to_Fr(text_p)
-    else:
-        raise HTTPException(status_code=400, detail="Invalid mode")
-
-    return {
-        "prediction": pred,
-        "remaining_uses": MAX_USES - use_counter
-    }
-
-
-
 
